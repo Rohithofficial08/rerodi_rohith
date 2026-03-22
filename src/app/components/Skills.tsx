@@ -127,20 +127,32 @@ export function Skills() {
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="p-8 rounded-3xl bg-gradient-to-br from-yellow-500/10 to-orange-500/10 backdrop-blur-md border border-yellow-500/20"
+            whileHover={{ y: -8 }}
+            className="group relative overflow-hidden p-8 rounded-3xl bg-gradient-to-br from-yellow-500/10 to-orange-500/10 backdrop-blur-md border border-yellow-500/20 hover:bg-yellow-500/15 transition-colors duration-500"
           >
-            <div className="flex items-center gap-4 mb-8">
-              <Trophy size={32} className="text-yellow-500" />
+            <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 to-orange-500 opacity-0 group-hover:opacity-[0.05] transition-opacity duration-500 blur-xl" />
+            <div className="relative z-10 flex items-center gap-4 mb-8">
+              <motion.div 
+                whileHover={{ rotate: 15, scale: 1.2 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Trophy size={32} className="text-yellow-500" />
+              </motion.div>
               <h3 className="text-3xl font-bold text-white">Achievements</h3>
             </div>
-            <div className="space-y-4">
+            <div className="relative z-10 space-y-4">
               {achievements.map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
+                <motion.div 
+                  key={i} 
+                  initial={{ x: 0 }}
+                  whileHover={{ x: 6 }}
+                  className="flex items-start gap-3 transition-transform cursor-default"
+                >
                   <div className="mt-1.5 w-2 h-2 rounded-full bg-yellow-500 flex-shrink-0" />
-                  <p className={`text-lg ${item.highlight ? 'text-yellow-400 font-semibold' : 'text-gray-300'}`}>
+                  <p className={`text-lg transition-colors ${item.highlight ? 'text-yellow-400 font-semibold drop-shadow-sm' : 'text-gray-300 group-hover:text-gray-100'}`}>
                     {item.text}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
@@ -150,18 +162,29 @@ export function Skills() {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="p-8 rounded-3xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-md border border-blue-500/20"
+            whileHover={{ y: -8 }}
+            className="group relative overflow-hidden p-8 rounded-3xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-md border border-blue-500/20 hover:bg-blue-500/15 transition-colors duration-500"
           >
-            <div className="flex items-center gap-4 mb-8">
-              <Award size={32} className="text-blue-500" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-[0.05] transition-opacity duration-500 blur-xl" />
+            <div className="relative z-10 flex items-center gap-4 mb-8">
+              <motion.div 
+                whileHover={{ rotate: -15, scale: 1.2 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Award size={32} className="text-blue-500" />
+              </motion.div>
               <h3 className="text-3xl font-bold text-white">Certifications</h3>
             </div>
-            <div className="space-y-4">
+            <div className="relative z-10 space-y-4">
               {certifications.map((cert, i) => (
-                <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                <motion.div 
+                  key={i} 
+                  whileHover={{ scale: 1.02 }}
+                  className="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-blue-400/30 transition-all cursor-default"
+                >
                   <Award size={20} className="text-blue-400 mt-1 flex-shrink-0" />
                   <p className="text-gray-200">{cert}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
